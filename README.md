@@ -1,68 +1,38 @@
 limits Cookbook
 ===============
-TODO: Enter the cookbook description here.
-
-e.g.
-This cookbook makes your favorite breakfast sandwhich.
+This cookbook is used to manage the PAM resource limits configuration (/etc/security/limits.conf). It does NOT manage PAM itself, so you will need to make sure your PAM configuration somehow else.
 
 Requirements
 ------------
-TODO: List your cookbook requirements. Be sure to include any requirements this cookbook has on platforms, libraries, other cookbooks, packages, operating systems, etc.
-
-e.g.
-#### packages
-- `toaster` - limits needs toaster to brown your bagel.
+Your PAM needs to include pam\_limits.so for the configuration this cookbook creates to have any affect
 
 Attributes
 ----------
-TODO: List you cookbook attributes here.
+The hash at node\["security"\]\["limits"\]\["domains"\] will be expanded into the configuration file. An example serves best. The JSON:
 
-e.g.
-#### limits::default
-<table>
-  <tr>
-    <th>Key</th>
-    <th>Type</th>
-    <th>Description</th>
-    <th>Default</th>
-  </tr>
-  <tr>
-    <td><tt>['limits']['bacon']</tt></td>
-    <td>Boolean</td>
-    <td>whether to include bacon</td>
-    <td><tt>true</tt></td>
-  </tr>
-</table>
+    "security": {
+        "limits": {
+            "domains": {
+                "*": {
+                    "nofile": {
+                        "hard": "65535",
+                        "soft": "65535"
+                    }
+                }
+            }
+        }
+    }
 
-Usage
------
-#### limits::default
-TODO: Write usage instructions for each cookbook.
+Will be turned into this configuration:
 
-e.g.
-Just include `limits` in your node's `run_list`:
-
-```json
-{
-  "name":"my_node",
-  "run_list": [
-    "recipe[limits]"
-  ]
-}
-```
+    * hard nofile 65535
+    * soft nofile 65535
 
 Contributing
 ------------
-TODO: (optional) If this is a public cookbook, detail the process for contributing. If this is a private cookbook, remove this section.
-
-e.g.
-1. Fork the repository on Github
-2. Create a named feature branch (like `add_component_x`)
-3. Write you change
-4. Write tests for your change (if applicable)
-5. Run the tests, ensuring they all pass
-6. Submit a Pull Request using Github
+Find me somewhere and talk to me, or do the Github thing. Whatever.
 
 License and Authors
 -------------------
-Authors: TODO: List authors
+Authors: Erick Turnquist
+License: Public domain

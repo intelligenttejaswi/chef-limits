@@ -1,0 +1,12 @@
+<%
+    node["security"]["limits"]["domains"].keys.each do |domain|
+        h = node["security"]["limits"]["domains"][domain]
+        h.keys.each do |item|
+            h[item].keys.each do |type|
+        %>
+<%="#{domain} #{type} #{item} #{h[item][type]}"%>
+        <%
+            end
+        end
+    end
+%>
