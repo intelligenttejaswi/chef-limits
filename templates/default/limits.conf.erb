@@ -1,4 +1,5 @@
 <%
+unless node["security"]["limits"]["domains"].nil?
     node["security"]["limits"]["domains"].keys.each do |domain|
         h = node["security"]["limits"]["domains"][domain]
         h.keys.each do |item|
@@ -9,4 +10,5 @@
             end
         end
     end
+end
 %>
