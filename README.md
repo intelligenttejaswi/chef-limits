@@ -1,10 +1,6 @@
 limits Cookbook
 ===============
-This cookbook is used to manage the PAM resource limits configuration (/etc/security/limits.conf). It does NOT manage PAM itself, so you will need to make sure your PAM configuration somehow else.
-
-Requirements
-------------
-Your PAM needs to include pam\_limits.so for the configuration this cookbook creates to have any affect
+This cookbook is used to manage the PAM resource limits configuration (/etc/security/limits.conf).
 
 Attributes
 ----------
@@ -28,11 +24,7 @@ Will be turned into this configuration:
     * hard nofile 65535
     * soft nofile 65535
 
-Contributing
-------------
-Find me somewhere and talk to me, or do the Github thing. Whatever.
-
 License and Authors
 -------------------
-Authors: Erick Turnquist
+Authors: Erick Turnquist, Kyle Johnson
 License: Public domain
